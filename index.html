@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Drop to Welcome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .splash-screen,
+    .main {
+      background: linear-gradient(180deg, #b3e0f2, #87CEEB);
+    }
+
+    .splash-screen {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .drop {
+      width: 30px;
+      height: 30px;
+      background: #4fc3f7;
+      border-radius: 60% 60% 40% 40%;
+      position: absolute;
+      top: -60px;
+      animation: fall 2.5s ease-in-out forwards;
+      box-shadow: inset -2px -4px 6px rgba(0, 0, 0, 0.2);
+      transform: rotate(45deg);
+    }
+
+    .drop::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      width: 8px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -60px;
+        opacity: 0;
+        transform: translateY(0) scale(1) rotate(45deg);
+      }
+      30% {
+        opacity: 1;
+      }
+      80% {
+        transform: translateY(80vh) scale(1.1, 0.9) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) scale(0.8, 1.2) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .main {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .welcome-text {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #0077b6;
+      opacity: 0;
+      animation: fadeInText 1.5s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeInButtons 1.5s ease-out 1s forwards;
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 10px 20px;
+      border-radius: 25px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      color: #0077b6;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .button:hover {
+      background: #0077b6;
+      color: #fff;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .button i {
+      margin-left: 10px;
+    }
+
+    .hamburger-menu {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      opacity: 0;
+      animation: fadeInMenu 1s ease-out 1s forwards;
+      cursor: pointer;
+    }
+
+    .hamburger-menu img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .hamburger-menu-content {
+      position: fixed;
+      top: 70px;
+      left: 20px;
+      display: none;
+      background: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    .hamburger-menu-content a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-size: 32px;
+      color: black;
+      padding: 10px;
+      transition: color 0.3s ease;
+    }
+
+    .hamburger-menu-content a:hover {
+      color: #333;
+    }
+
+    @keyframes fadeInText {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInButtons {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInMenu {
+      0% { opacity: 0; transform: translateX(-20px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="splash-screen" id="splash">
+    <div class="drop"></div>
+  </div>
+
+  <div class="main" id="main">
+    <div class="hamburger-menu" onclick="toggleMenu()">
+      <img src="https://cdn-icons-png.flaticon.com/512/2976/2976215.png" alt="Menu">
+    </div>
+    <div class="hamburger-menu-content" id="hamburger-menu-content">
+      <a href="https://x.com/SVaezpoor94251?t=0PgrvZYEHhDV5aCrqqmWAA&s=09" target="_blank">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+    </div>
+    <div class="container">
+      <div class="welcome-text">Welcome to POGO</div>
+      <div class="buttons">
+        <a href="#" class="button">
+          <i class="fas fa-shopping-cart"></i>
+          Buy Now
+        </a>
+        <a href="whitepaper.html" class="button">
+          <i class="fas fa-file-alt"></i>
+          Read Whitepaper
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('hamburger-menu-content');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('splash').style.display = 'none';
+        const main = document.getElementById('main');
+        main.style.display = 'flex';
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
